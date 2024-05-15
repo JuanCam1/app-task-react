@@ -3,7 +3,7 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 export const App = () => {
   const { pathname } = useLocation();
   return (
-    <section className="bg-gray-50 h-screen dark:bg-gray-900 flex justify-center items-center">
+    <section className="bg-gray-200 h-screen dark:bg-gray-900 flex justify-center items-center">
       
       <div className="h-[410px] flex w-full max-w-[470px] flex-col items-center ">
         
