@@ -1,6 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Dashboard, Home, Login, Register, Projects, Profile } from "../pages";
 import { App } from "../App";
+import Project from "../pages/project/sections/Project";
+import NewProject from "../pages/project/sections/NewProject";
 
 export const router = createBrowserRouter([
   {
@@ -27,7 +29,15 @@ export const router = createBrowserRouter([
       },
       {
         path: "projects",
-        element: <Projects />
+        element: <Projects />,
+      },
+      {
+        path: "project/:idProject",
+        element: <Project />,
+      },
+      {
+        path: "project/create",
+        element: <NewProject />,
       },
       {
         path: "profile",

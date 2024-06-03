@@ -2,6 +2,7 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 
 export const App = () => {
   const { pathname } = useLocation();
+  // console.log(pathname)
   return (
     <section className="bg-gray-200 h-screen dark:bg-gray-900 flex justify-center items-center">
       
@@ -11,7 +12,7 @@ export const App = () => {
           <li className="w-full">
             <Link
               to="/"
-              className={`${pathname === "/" && " dark:bg-gray-600/50 bg-blue-300/50"
+              className={`${pathname === "/" && " dark:bg-gray-500/50 bg-blue-300/50"
                 } dark:text-white text-black inline-block w-full p-4 bg-white border-s-0 border-r border-gray-200 dark:border-gray-700 rounded-tl-lg  hover:bg-blue-50 hover:text-gray-700  dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700`}
               aria-current="page"
             >
@@ -22,7 +23,7 @@ export const App = () => {
           <li className="w-full">
             <Link
               to="/register"
-              className={`${pathname === "/register" && "dark:bg-gray-600/50 bg-blue-300/50"
+              className={`${pathname === "/register" && "dark:bg-gray-500/50 bg-blue-300/50"
                 } dark:text-white text-black inline-block w-full p-4 bg-white border-s-0 border-blue-300 dark:border-gray-700 rounded-tr-lg hover:bg-blue-50   dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700`}
             >
               Register

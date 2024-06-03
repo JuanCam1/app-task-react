@@ -1,4 +1,23 @@
+import { useFormik } from "formik";
+import { useState } from "react";
+import { FaEyeSlash } from "react-icons/fa";
+import { IoEye } from "react-icons/io5";
+
+const INITIAL_VALUES = {
+  idUseR: "",
+  nameUser: "",
+  emailUser: "",
+  passwordUser: ""
+}
 export const Register = () => {
+  const [isView, setIsView] = useState(false);
+  const formik = useFormik({
+    initialValues: INITIAL_VALUES,
+    onSubmit: (values) => {
+      console.log(values)
+    },
+
+  })
   return (
     <div className="h-full bg-white rounded-b-lg shadow dark:border dark:bg-gray-800 dark:border-gray-700">
       <div className="p-4 space-y-4 md:space-y-6 sm:p-4">
@@ -8,7 +27,7 @@ export const Register = () => {
               htmlFor="name"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
-              Name
+              Nombre
             </label>
             <input
               type="text"
@@ -42,14 +61,19 @@ export const Register = () => {
             >
               Password
             </label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="••••••••"
-              className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
-              required
-            />
+            <div className="flex items-center border bg-gray-50 dark:bg-gray-700 dark:border-gray-600 border-gray-300 rounded-lg pr-2">
+              <input
+                onChange={formik.handleChange}
+                value={formik.values.passwordUser}
+                type={isView ? "text" : "password"}
+                name="passwordUser"
+                id="passwordUser"
+                placeholder="••••••••"
+                className="bg-transparent border-none  text-gray-900 sm:text-sm  block w-full p-2.5  dark:placeholder-gray-400 dark:text-white focus:ring-red-600 focus:border-blue-600 "
+                required
+              />
+              <span onClick={() => setIsView(prev => !prev)} className="block cursor-pointer"> {isView ? <FaEyeSlash /> : <IoEye />}</span>
+            </div>
           </div>
 
           <div className="w-full flex justify-center">

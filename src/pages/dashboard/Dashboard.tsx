@@ -5,7 +5,7 @@ export const Dashboard = () => {
   return (
     <>
       <Sidebar />
-      <div className="pl-20 z-0">
+      <div className="pl-20 max-sm:pl-16 z-0">
         <Outlet />
       </div>
     </>

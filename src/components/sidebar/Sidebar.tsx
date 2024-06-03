@@ -1,21 +1,24 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useTheme } from "../../hooks/useTheme";
 import { Switch } from "../switch/Switch";
 import imagePath from "../../assets/images/pixelJuan.png"
 import controlPath from "../../assets/control.png"
 import { FaHome } from "react-icons/fa";
-import { MdCreateNewFolder  } from "react-icons/md";
+import { MdCreateNewFolder } from "react-icons/md";
 import { FaFolderOpen } from "react-icons/fa6";
 import { FaUserCog } from "react-icons/fa";
 import { IoLogOut } from "react-icons/io5";
 
 export const Sidebar = () => {
   const { darkMode, toggleDarkMode, openMode, toggleOpenMode } = useTheme()
+  const { pathname } = useLocation()
+
+  console.log(pathname)
 
   return (
     <div
-      className={` ${openMode ? "w-52" : "w-20 max-sm:w-18"
-        } bg-white dark:bg-[#16191D] fixed z-10 border-r-2 border-solid border-cecece dark:border-gray-500 h-screen p-5  pt-8 duration-300`}
+      className={` ${openMode ? "w-52" : "w-20 max-sm:w-16"
+        } bg-white dark:bg-[#16191D] fixed z-10 border-r-2 border-solid border-cecece dark:border-gray-500 h-screen p-5 max-sm:p-2  pt-8 duration-300`}
     >
       <img
         src={controlPath}
@@ -36,75 +39,73 @@ export const Sidebar = () => {
       </div>
 
       <ul className="pt-6 ">
-          <Link
-            to="/dashboard"
-            className={`flex rounded-md pb-2 cursor-pointer pl-2 py-2 hover:bg-blue-100 hover:dark:bg-white/20 text-gray-300 text-sm items-center gap-x-4 
-               mt-6 bg-light-white`}
+        <Link
+          to="/dashboard"
+          className={`flex rounded-md pb-2 cursor-pointer pl-2 py-2 hover:bg-blue-100 hover:dark:bg-white/20 text-gray-300 text-sm items-center gap-x-4 mt-6 bg-light-white ${pathname === "/dashboard" ? "dark:bg-white/20" : null}`}
+        >
+          <FaHome size={24} color="gray" />
+          <span
+            className={`${!openMode && "hidden"
+              } whitespace-nowrap overflow-hidden text-ellipsis origin-left duration-200 text-black dark:text-white`}
           >
-            <FaHome size={24} />
-            <span
-              className={`${!openMode && "hidden"
-                } whitespace-nowrap overflow-hidden text-ellipsis origin-left duration-200 text-black dark:text-white`}
-            >
-              Inicio
-            </span>
-          </Link>
+            Inicio
+          </span>
+        </Link>
 
-          <Link
-            to="/dashboard/projects"
-            className={`flex rounded-md pb-2 cursor-pointer pl-2 py-2 hover:bg-blue-100 hover:dark:bg-white/20 text-gray-300 text-sm items-center gap-x-4 
-               mt-6`}
+        <Link
+          to="/dashboard/projects"
+          className={`flex rounded-md pb-2 cursor-pointer pl-2 py-2 hover:bg-blue-100 hover:dark:bg-white/20 text-gray-300 text-sm items-center gap-x-4 
+               mt-6 ${pathname === "/dashboard/projects" ? "dark:bg-white/20" : null}`}
+        >
+          <FaFolderOpen size={24} color="gray" />
+          <span
+            className={`${!openMode && "hidden"
+              } whitespace-nowrap overflow-hidden text-ellipsis origin-left duration-200 text-black dark:text-white `}
           >
-            <FaFolderOpen size={24} />
-            <span
-              className={`${!openMode && "hidden"
-                } whitespace-nowrap overflow-hidden text-ellipsis origin-left duration-200 text-black dark:text-white`}
-            >
-              Proyectos
-            </span>
-          </Link>
+            Proyectos
+          </span>
+        </Link>
 
-          <Link
-            to="/dashboard"
-            className={`flex rounded-md pb-2 cursor-pointer pl-2 py-2 hover:bg-blue-100 hover:dark:bg-white/20 text-gray-300 text-sm items-center gap-x-4 
+        <Link
+          to="/dashboard/project/create"
+          className={`flex rounded-md pb-2 cursor-pointer pl-2 py-2 hover:bg-blue-100 hover:dark:bg-white/20 text-gray-300 text-sm items-center gap-x-4 mt-2 ${pathname === "/dashboard/project/create" ? "dark:bg-white/20" : null}`}
+        >
+          <MdCreateNewFolder size={24} color="gray" />
+          <span
+            className={`${!openMode && "hidden"
+              } whitespace-nowrap overflow-hidden text-ellipsis origin-left transition-all duration-200 text-black dark:text-white`}
+          >
+            Nuevo Proyecto
+          </span>
+        </Link>
+
+        <Link
+          to="/dashboard/profile"
+          className={`flex rounded-md pb-2 cursor-pointer pl-2 py-2 hover:bg-blue-100 hover:dark:bg-white/20 text-gray-300 text-sm items-center gap-x-4 
+               mt-6 ${pathname === "/dashboard/profile" ? "dark:bg-white/20" : null}`}
+        >
+          <FaUserCog size={24} color="gray" />
+          <span
+            className={`${!openMode && "hidden"
+              } whitespace-nowrap overflow-hidden text-ellipsis origin-left duration-200 text-black dark:text-white`}
+          >
+            Perfil
+          </span>
+        </Link>
+
+        <Link
+          to="/"
+          className={`flex rounded-md pb-2 cursor-pointer pl-2 py-2 hover:bg-blue-100 hover:dark:bg-white/20 text-gray-300 text-sm items-center gap-x-4 
                mt-2`}
+        >
+          <IoLogOut size={24} color="gray" />
+          <span
+            className={`${!openMode && "hidden"
+              } whitespace-nowrap overflow-hidden text-ellipsis origin-left duration-200 text-black dark:text-white`}
           >
-            <MdCreateNewFolder   size={24} />
-            <span
-              className={`${!openMode && "hidden"
-                } whitespace-nowrap overflow-hidden text-ellipsis origin-left duration-200 text-black dark:text-white`}
-            >
-              Nuevo Proyecto
-            </span>
-          </Link>
-
-          <Link
-            to="/dashboard/profile"
-            className={`flex rounded-md pb-2 cursor-pointer pl-2 py-2 hover:bg-blue-100 hover:dark:bg-white/20 text-gray-300 text-sm items-center gap-x-4 
-               mt-6`}
-          >
-            <FaUserCog size={24} />
-            <span
-              className={`${!openMode && "hidden"
-                } whitespace-nowrap overflow-hidden text-ellipsis origin-left duration-200 text-black dark:text-white`}
-            >
-              Perfil
-            </span>
-          </Link>
-
-          <Link
-            to="/dashboard"
-            className={`flex rounded-md pb-2 cursor-pointer pl-2 py-2 hover:bg-blue-100 hover:dark:bg-white/20 text-gray-300 text-sm items-center gap-x-4 
-               mt-2`}
-          >
-            <IoLogOut size={24} />
-            <span
-              className={`${!openMode && "hidden"
-                } whitespace-nowrap overflow-hidden text-ellipsis origin-left duration-200 text-black dark:text-white`}
-            >
-              Salir
-            </span>
-          </Link>
+            Salir
+          </span>
+        </Link>
 
 
 
